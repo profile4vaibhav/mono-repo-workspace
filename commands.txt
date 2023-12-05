@@ -1,0 +1,20 @@
+ng new mono-repo-workspace --create-application=false
+
+ng g application host-app --routing --style=scss
+ng g application mfe-app --routing --style=scss
+
+ng serve host-app --port 4200
+ng serve mfe-app --port 4300
+
+ng add @angular-architects/module-federation --project host-app --port 4200 --type host
+
+ng add @angular-architects/module-federation --project mfe-app --port 4300 --type remote
+
+ng serve host-app
+ng serve mfe-app
+
+ng g c home --project host-app
+
+ng g m todo-list --project mfe-app
+
+ng g c todo-list --project mfe-app
